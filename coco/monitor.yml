@@ -1,0 +1,29 @@
+fluentd:
+  build: ./fluentd
+  restart: always
+  volumes:
+    # Replace with path to config file of fluentd in CloudOpting machine
+    - ./fluentd/volumes/etc:/fluentd/etc
+    # Replace with path to certs in CloudOpting machine:/fluentd/certs
+    - ../certs:/fluentd/certs
+  environment:
+    - FLUENTD_CONF=cloudopting.conf
+  container_name: fluentd
+  hostname: fluentd
+  ports:
+    - "24224:24224"
+    - "5601:5601"
+
+elasticsearch:
+  image: elasticsearch:2
+  restart: always
+  net: "container:fluentd"
+  container_name: elasticsearch
+
+kibana:
+  image: kibana:4
+  restart: always
+  net: "container:fluentd"
+  environment:
+    - ELASTICSEARCH_URL=http://localhost:9200
+  container_name: kibana

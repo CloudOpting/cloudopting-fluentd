@@ -1,0 +1,16 @@
+# You need to have the certificates previously generated
+# You need deploy fluentd-forwarding.yml before that application.yml
+
+fluentd-forwarding:
+  image: default/fforwarding
+  restart: always
+  volumes:
+    # Replace with path to certs in CloudOpting machine:/fluentd/certs
+    - /var/lib/emulatedhost/certs:/fluentd/certs
+  environment:
+    - FLUENTD_CONF=cloudopting.conf
+  container_name: fluentd-forwarding
+  hostname: fluentd-forwarding
+  # Replace with CloudOpting machine IP
+  extra_hosts:
+    - "CloudOpting:91.121.225.114"

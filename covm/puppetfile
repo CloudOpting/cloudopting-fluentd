@@ -1,0 +1,2 @@
+# In this case, we use manifest which not need modules, however, crane not allow context if a puppetfile not exist.
+# So i created this empty file
