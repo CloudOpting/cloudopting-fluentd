@@ -38,7 +38,7 @@ RUN /home/ubuntu/.xbuild/ruby-install 2.2.2 /home/ubuntu/ruby
 ENV PATH /home/ubuntu/ruby/bin:$PATH
 RUN gem install fluentd -v 0.12.16
 
-RUN gem install fluent-plugin-secure-forward fluent-plugin-elasticsearch fluent-plugin-burrow fluent-plugin-grep
+RUN gem install fluent-plugin-secure-forward fluent-plugin-elasticsearch fluent-plugin-burrow fluent-plugin-grep fluent-plugin-rewrite-tag-filter fluent-plugin-retag
 
 #COPY fluent.conf /fluentd/etc/
 #ONBUILD COPY fluent.conf /fluentd/etc/
